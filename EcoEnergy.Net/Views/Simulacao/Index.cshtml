@@ -1,0 +1,47 @@
+﻿@model WebApplicationOdontoPrev.ViewModels.SimulacaoViewModel
+@{
+    ViewData["Title"] = "Simulação";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5 text-center" style="max-width: 800px;">
+    <div class="d-flex align-items-center justify-content-center mb-3">
+        <img src="/images/icon-ecoenergy-removebg-preview.svg" alt="Imagem representativa" style="height: 60px; margin-right: 15px;">
+        <h1 class="display-5 fw-bold mb-3" style="color: #2e2e2e; font-size: 2.5rem;">Simulação de Custos</h1>
+    </div>
+    <p class="lead mb-5" style="color: #2e2e2e; font-size: 1.5rem;">Faça agora a simulação para entender os custos e benefícios de converter sua energia para solar.</p>
+    
+    @if (Model.NrCustoEstimado > 0)
+    {
+        <div id="resultado" class="mt-4 border rounded p-4" style="color: #2e2e2e; font-size: 1.5rem; border-color: #2e2e2e;">
+            <h3>Custo Aproximado:</h3>
+            <p>O custo aproximado para instalação das placas solares é de R$ @Model.NrCustoEstimado.ToString("N2").</p>
+        </div>
+    }
+    
+    <div class="mx-auto" style="max-width: 100%;">
+        <form method="post" asp-action="Index" style="min-width: 400px;">
+            <div class="mb-5" style="font-size: 1.2rem;">
+                <label for="NrConsumoMensal" class="form-label" style="color: #2e2e2e; font-weight: bold;">
+                    Qual é o seu consumo mensal em watts (W)?
+                </label>
+                <p style="color: #2e2e2e;">Verifique este valor em sua última conta de luz ou calcule a média das três últimas contas.</p>
+                <input type="number" id="NrConsumoMensal" class="form-control" style="background-color: #d0d8e8; border: none;" asp-for="NrConsumoMensal" required>
+            </div>
+
+            <div class="mb-5" style="font-size: 1.2rem;">
+                <label for="NrAreaPlaca" class="form-label" style="color: #2e2e2e; font-weight: bold;">
+                    Qual é a área disponível para a instalação das placas solares?
+                </label>
+                <p style="color: #2e2e2e;">Informe a área em metros quadrados (m²) que pode ser utilizada para instalação.</p>
+                <input type="number" id="NrAreaPlaca" class="form-control" style="background-color: #d0d8e8; border: none;" asp-for="NrAreaPlaca" required>
+            </div>
+
+            <div class="text-center mt-5">
+                <button type="submit" class="btn btn-primary px-5 py-3" style="font-size: 1.2rem;">Calcular</button>
+            </div>
+
+
+        </form>
+    </div>
+</div>
