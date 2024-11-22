@@ -1,10 +1,43 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using WebApplicationOdontoPrev.ViewModels;
+using System;
+using EcoEnergy.Data;
+using EcoEnergy.Repositories.Interfaces;
+using EcoEnergy.Dtos;
+using EcoEnergy.Models;
 
 namespace WebApplicationOdontoPrev.Controllers
 {
     public class SimulacaoController : Controller
     {
+        private readonly DataContext _context;
+        private readonly ISimulacaoRepository _simulacaoRepository;
+        public SimulacaoController(
+            DataContext context,
+            ISimulacaoRepository simulacaoRepository
+            )
+        {
+            _context = context;
+            _simulacaoRepository = simulacaoRepository;
+        }
+        private void SalvarSimulacao(int? id, SimulacaoViewModel model)
+        {
+            var simulacao = new SimulacaoDtos
+            {
+                NrConsumoMensal = model.NrConsumoMensal,
+                NrAreaPlaca = model.NrAreaPlaca,
+                DsOrcamentoSolicitado = model.DsOrcamentoSolicitado,
+                NrCustoEstimado = model.NrCustoEstimado,
+                NrEconomia = model.NrEconomia,
+                DtSimulacao = model.DtSimulacao,
+                NrPotenciaEstimada = model.NrPotenciaEstimada,
+                NrProducaoMensal = model.NrProducaoMensal,
+                NrTempoRetornoInvestimento = model.NrTempoRetornoInvestimento,
+                IdUsuario = id.Value
+            };            
+            _simulacaoRepository.Create(simulacao);            
+        }
+
         [HttpGet]
         public IActionResult Index()
         {
@@ -12,36 +45,69 @@ namespace WebApplicationOdontoPrev.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(SimulacaoViewModel model)
-        {
+        public IActionResult MostraSimulacao(SimulacaoViewModel model)
+        {   
             if (ModelState.IsValid)
             {
-                double precoPorPlaca = 1500;
-                double eficienciaPlaca = 350;
-                double horasSolPlena = 5;
+                // Constantes de mercado
+                double precoPorKW = 5000; // Preço aproximado por kW instalado
+                double eficienciaPlaca = 0.8; // 80% de eficiência
+                double potenciaPorM2 = 0.15; // 150 W por m²
+                double producaoMensalPorKW = 150; // Produção estimada de 150 kWh por kW por mês
 
-                double consumoDiario = model.NrConsumoMensal / 30;
-                double potenciaNecessaria = consumoDiario / horasSolPlena;
+                // Cálculo da potência necessária
+                model.NrPotenciaEstimada = Math.Round(model.NrConsumoMensal / (eficienciaPlaca * producaoMensalPorKW), 2);
 
-                double placasNecessarias = Math.Ceiling(potenciaNecessaria / eficienciaPlaca);
+                // Cálculo da área de placas necessária
+                model.NrAreaPlaca = Math.Round(model.NrPotenciaEstimada / potenciaPorM2, 2);
 
-                double areaPorPlaca = 2;
-                double totalAreaNecessaria = placasNecessarias * areaPorPlaca;
+                // Cálculo da produção mensal estimada
+                model.NrProducaoMensal = Math.Round(model.NrPotenciaEstimada * producaoMensalPorKW, 2);
 
-                if (model.NrAreaPlaca >= totalAreaNecessaria)
+                // Cálculo do custo estimado de instalação
+                model.NrCustoEstimado = Math.Round(model.NrPotenciaEstimada * precoPorKW, 2);
+
+                // Cálculo da economia mensal
+                model.NrEconomia = Math.Round(model.NrConsumoMensal * model.CustoKWh, 2);
+
+                // Cálculo do tempo de retorno do investimento
+                model.NrTempoRetornoInvestimento = Math.Round(model.NrCustoEstimado / model.NrEconomia, 2);
+
+                // Data da simulação
+                model.DtSimulacao = DateOnly.FromDateTime(DateTime.Now);
+
+                int? userId = HttpContext.Session.GetInt32("UserId");
+
+                if (userId == null)
                 {
-                    model.NrCustoEstimado = placasNecessarias * precoPorPlaca;
-                }
-                else
-                {
-                    model.NrCustoEstimado = 0;
-                    ModelState.AddModelError("", "A área disponível não é suficiente para instalar as placas necessárias.");
+                    // Se o ID não estiver na sessão, redirecione para o login
+                    return RedirectToAction("Index", "Login");
                 }
 
-                return View(model);
+                SalvarSimulacao(userId, model);
+                return View("Index",model);
             }
 
-            return View(model);
+            return View("Index", new SimulacaoViewModel());
+        }
+
+        [HttpPost]
+        public IActionResult SolicitarOrcamento(SimulacaoViewModel model)
+        {
+            // Marca o orçamento como solicitado
+            model.DsOrcamentoSolicitado = 1;
+
+            int? userId = HttpContext.Session.GetInt32("UserId");
+
+            if (userId == null)
+            {
+                // Se o ID não estiver na sessão, redirecione para o login
+                return RedirectToAction("Index", "Login");
+            }
+
+            SalvarSimulacao(userId, model);
+            // Redireciona para o método Index, preservando os dados do model
+            return View("Index", model);
         }
     }
 }

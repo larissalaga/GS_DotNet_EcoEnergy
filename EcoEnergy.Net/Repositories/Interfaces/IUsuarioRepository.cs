@@ -11,5 +11,6 @@ namespace EcoEnergy.Repositories.Interfaces
         Task<Models.Usuario> GetById(int id);
         Task<Models.Usuario> GetByCPF(string nr_cpf);
         Task<Models.Usuario> Update(int id, UsuarioDtos usuario);
+        Task<Models.Usuario> GetByEmail(string ds_email);
     }
 }

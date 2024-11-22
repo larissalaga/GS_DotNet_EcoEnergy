@@ -3,18 +3,19 @@
 namespace WebApplicationOdontoPrev.ViewModels
 {
     public class SimulacaoViewModel
-    {
+    {        
         // Entradas
-        public double NrConsumoMensal { get; set; }
-        public double NrAreaPlaca { get; set; }
-        public bool DsOrcamentoSolicitado { get; set; }
+        public double NrConsumoMensal { get; set; } = 0;
+        public double NrAreaPlaca { get; set; } = 0; // Valor padrão de área de placa
+        public int DsOrcamentoSolicitado { get; set; } = 0; // Valor padrão de orçamento solicitado
+        public double CustoKWh { get; set; } = 0.70; // Valor padrão de custo do kWh
+
         // Calculado
-        public double NrCustoEstimado { get; set; }
-        public double NrEconomia { get; set; }
-        public DateOnly DtSimulacao { get; set; }
-        public double NrPotenciaEstimada { get; set; }
-        public double NrProducaoMensal { get; set; }
-        public double NrTempoRetornoInvestimento { get; set; }
-        
+        public double NrCustoEstimado { get; set; } = 0;
+        public double NrEconomia { get; set; } = 0;
+        public DateOnly DtSimulacao { get; set; } = DateOnly.FromDateTime(DateTime.Now);
+        public double NrPotenciaEstimada { get; set; } = 0;
+        public double NrProducaoMensal { get; set; } = 0;
+        public double NrTempoRetornoInvestimento { get; set; } = 0;
     }
 }

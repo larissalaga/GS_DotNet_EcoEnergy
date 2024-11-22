@@ -103,7 +103,18 @@ namespace EcoEnergy.Repositories.Implementations
                 return getUsuario;
             }
         }
-
+        public async Task<Models.Usuario> GetByEmail(string ds_email)
+        {
+            var getUsuario = await _context.Usuario.FirstOrDefaultAsync(x => x.DsEmail == ds_email);
+            if (getUsuario == null)
+            {
+                throw new Exception("Usuário não cadastrado");
+            }
+            else
+            {
+                return getUsuario;
+            }
+        }
         public async Task<Models.Usuario> Update(int id, UsuarioDtos usuario)
         {
             var getUsuario = await _context.Usuario.FirstOrDefaultAsync(x => x.IdUsuario == id);
