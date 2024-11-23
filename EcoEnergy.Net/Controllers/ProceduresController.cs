@@ -56,7 +56,7 @@ namespace EcoEnergy.Controllers
                     model.DsEspecialidade
                 );
                 TempData["SuccessMessage"] = "Empresa inserida com sucesso!";
-                return RedirectToAction("MenuProcedures");
+                return RedirectToAction("EmpresaView");
             }
             catch (System.Exception e)
             {
