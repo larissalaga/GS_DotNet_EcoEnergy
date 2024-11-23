@@ -14,14 +14,7 @@ namespace EcoEnergy.Repositories.Implementations
         }
         public async Task<Models.Simulacao> Create(SimulacaoDtos simulacao)
         {
-            var getSimulacao = await _context.Simulacao.FirstOrDefaultAsync(x => x.IdUsuario == simulacao.IdUsuario);
-            if (getSimulacao != null)
-            {
-                throw new Exception("Simulação já cadastrada");
-            }
-            else
-            {
-                var newSimulacao = new Models.Simulacao
+            var newSimulacao = new Models.Simulacao
                 {
                     NrCustoEstimado = simulacao.NrCustoEstimado,
                     NrEconomia = simulacao.NrEconomia,
@@ -38,7 +31,6 @@ namespace EcoEnergy.Repositories.Implementations
                 _context.Simulacao.Add(newSimulacao);
                 await _context.SaveChangesAsync();
                 return newSimulacao;
-            }
         }
         public async Task<bool> DeleteById(int id)
         {
