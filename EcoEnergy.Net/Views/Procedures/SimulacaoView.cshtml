@@ -1,0 +1,89 @@
+﻿@model EcoEnergy.ViewModels.ProceduresViewModel
+
+@{
+    ViewData["Title"] = "Simulação";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5" style="max-width: 800px;">
+    <h1 class="text-center display-5 fw-bold mb-4" style="color: #2e2e2e;">Inserir Nova Simulação</h1>
+
+    <form method="post" asp-action="SimulacaoView" asp-controller="Procedures">
+        <div class="mb-4">
+            <label asp-for="NrCustoEstimado" class="form-label" style="color: #2e2e2e; font-size: 1.2rem;">Custo Estimado</label>
+            <input asp-for="NrCustoEstimado" class="form-control" style="background-color: #d0d8e8;" placeholder="Digite o custo estimado" required />
+            <span asp-validation-for="NrCustoEstimado" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="NrEconomia" class="form-label" style="color: #2e2e2e; font-size: 1.2rem;">Economia Estimada</label>
+            <input asp-for="NrEconomia" class="form-control" style="background-color: #d0d8e8;" placeholder="Digite a economia estimada" required />
+            <span asp-validation-for="NrEconomia" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="DtSimulacao" class="form-label" style="color: #2e2e2e; font-size: 1.2rem;">Data da Simulação</label>
+            <input asp-for="DtSimulacao" class="form-control" style="background-color: #d0d8e8;" required />
+            <span asp-validation-for="DtSimulacao" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="NrConsumoMensal" class="form-label" style="color: #2e2e2e; font-size: 1.2rem;">Consumo Mensal</label>
+            <input asp-for="NrConsumoMensal" class="form-control" style="background-color: #d0d8e8;" placeholder="Digite o consumo mensal em kWh" required />
+            <span asp-validation-for="NrConsumoMensal" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="NrAreaPlaca" class="form-label" style="color: #2e2e2e; font-size: 1.2rem;">Área para Placas</label>
+            <input asp-for="NrAreaPlaca" class="form-control" style="background-color: #d0d8e8;" placeholder="Digite a área disponível para placas (m²)" required />
+            <span asp-validation-for="NrAreaPlaca" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="NrPotenciaEstimada" class="form-label" style="color: #2e2e2e; font-size: 1.2rem;">Potência Estimada</label>
+            <input asp-for="NrPotenciaEstimada" class="form-control" style="background-color: #d0d8e8;" placeholder="Digite a potência estimada (kW)" required />
+            <span asp-validation-for="NrPotenciaEstimada" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="NrProducaoMensal" class="form-label" style="color: #2e2e2e; font-size: 1.2rem;">Produção Mensal</label>
+            <input asp-for="NrProducaoMensal" class="form-control" style="background-color: #d0d8e8;" placeholder="Digite a produção mensal (kWh)" required />
+            <span asp-validation-for="NrProducaoMensal" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="NrTempoRetornoInvestimento" class="form-label" style="color: #2e2e2e; font-size: 1.2rem;">Tempo de Retorno do Investimento</label>
+            <input asp-for="NrTempoRetornoInvestimento" class="form-control" style="background-color: #d0d8e8;" placeholder="Digite o tempo de retorno (em meses)" required />
+            <span asp-validation-for="NrTempoRetornoInvestimento" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="DsOrcamentoSolicitado" class="form-label" style="color: #2e2e2e; font-size: 1.2rem;">Orçamento Solicitado</label>
+            <select asp-for="DsOrcamentoSolicitado" class="form-control" style="background-color: #d0d8e8;" required>
+                <option value="1">Sim</option>
+                <option value="0">Não</option>
+            </select>
+            <span asp-validation-for="DsOrcamentoSolicitado" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="IdUsuario" class="form-label" style="color: #2e2e2e; font-size: 1.2rem;">ID do Usuário</label>
+            <input asp-for="IdUsuario" class="form-control" style="background-color: #d0d8e8;" placeholder="Digite o ID do usuário associado" required />
+            <span asp-validation-for="IdUsuario" class="text-danger"></span>
+        </div>
+
+        <div class="mb-4">
+            <label asp-for="IdEndereco" class="form-label" style="color: #2e2e2e; font-size: 1.2rem;">ID do Endereço</label>
+            <input asp-for="IdEndereco" class="form-control" style="background-color: #d0d8e8;" placeholder="Digite o ID do endereço associado" required />
+            <span asp-validation-for="IdEndereco" class="text-danger"></span>
+        </div>
+
+        <div class="text-center">
+            <button type="submit" class="btn px-5 py-2" style="background-color: #2e2e2e; color: white; font-size: 1.2rem;">Salvar</button>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

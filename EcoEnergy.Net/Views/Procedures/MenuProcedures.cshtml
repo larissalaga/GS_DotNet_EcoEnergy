@@ -1,0 +1,17 @@
+﻿@{
+    ViewData["Title"] = "MenuProcedures";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-5 text-center" style="max-width: 800px;">
+    <img src="/images/icon-ecoenergy-removebg-preview.svg" alt="Imagem representativa" class="img-fluid" style="max-height: 300px; margin-bottom: 5px;">
+    <h1 class="display-5 fw-bold mb-3" style="color: #2e2e2e;">Escolher Tabela para Inserção</h1>
+    <p class="lead mb-5" style="color: #2e2e2e;">Selecione a tabela em que deseja inserir dados.</p>
+
+    <div class="d-flex flex-column align-items-center gap-4">
+        <button type="button" class="btn d-flex justify-content-center align-items-center p-3" style="background-color: #d0d8e8; color: black; width: 300px; border: none; font-size: 1.5rem; font-weight: bold;" onclick="location.href='/Procedures/EmpresaView'">Empresa</button>
+        <button type="button" class="btn d-flex justify-content-center align-items-center p-3" style="background-color: #d0d8e8; color: black; width: 300px; border: none; font-size: 1.5rem; font-weight: bold;" onclick="location.href='/Procedures/UsuarioView'">Usuário</button>
+        <button type="button" class="btn d-flex justify-content-center align-items-center p-3" style="background-color: #d0d8e8; color: black; width: 300px; border: none; font-size: 1.5rem; font-weight: bold;" onclick="location.href='/Procedures/EnderecoView'">Endereço</button>
+        <button type="button" class="btn d-flex justify-content-center align-items-center p-3" style="background-color: #d0d8e8; color: black; width: 300px; border: none; font-size: 1.5rem; font-weight: bold;" onclick="location.href='/Procedures/OrcamentoView'">Orçamento</button>
+        <button type="button" class="btn d-flex justify-content-center align-items-center p-3" style="background-color: #d0d8e8; color: black; width: 300px; border: none; font-size: 1.5rem; font-weight: bold;" onclick="location.href='/Procedures/SimulacaoView'">Simulação</button>
+    </div>
+</div>
