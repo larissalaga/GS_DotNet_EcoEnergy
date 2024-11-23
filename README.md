@@ -1,6 +1,7 @@
 # ECOENERGY
 
 ## Link para o video de Pitch
+- [Repositório GitHub](https://github.com/larissalaga/GS_DotNet_EcoEnergy)
 - [YouTube Link Pitch](https://www.youtube.com/watch?v=rghuE66uaJA)
 
 ## 1. Objetivo do Projeto
