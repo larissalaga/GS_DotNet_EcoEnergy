@@ -41,8 +41,7 @@ namespace EcoEnergy.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            return RedirectToAction("MenuProcedures", "Procedures"); /////// REMOVER ESSA LINHA
-            //return View();
+            return View();
         }
 
     }
