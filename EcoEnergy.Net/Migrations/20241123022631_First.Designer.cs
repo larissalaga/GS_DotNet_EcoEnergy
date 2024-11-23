@@ -12,7 +12,7 @@ using Oracle.EntityFrameworkCore.Metadata;
 namespace EcoEnergy.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241122024451_First")]
+    [Migration("20241123022631_First")]
     partial class First
     {
         /// <inheritdoc />
@@ -163,9 +163,8 @@ namespace EcoEnergy.Migrations
                         .HasColumnType("NVARCHAR2(200)")
                         .HasColumnName("DS_SERVICOS");
 
-                    b.Property<string>("DtOrcamento")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(10)")
+                    b.Property<DateTime>("DtOrcamento")
+                        .HasColumnType("TIMESTAMP(7)")
                         .HasColumnName("DT_ORCAMENTO");
 
                     b.Property<int?>("EmpresaIdEmpresa")
@@ -207,9 +206,8 @@ namespace EcoEnergy.Migrations
                         .HasColumnType("NUMBER(10)")
                         .HasColumnName("DS_ORCAMENTO_SOLICITADO");
 
-                    b.Property<string>("DtSimulacao")
-                        .IsRequired()
-                        .HasColumnType("NVARCHAR2(10)")
+                    b.Property<DateTime>("DtSimulacao")
+                        .HasColumnType("TIMESTAMP(7)")
                         .HasColumnName("DT_SIMULACAO");
 
                     b.Property<int?>("EnderecoIdEndereco")

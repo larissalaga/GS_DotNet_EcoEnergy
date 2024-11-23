@@ -74,7 +74,7 @@ namespace WebApplicationOdontoPrev.Controllers
                 model.NrTempoRetornoInvestimento = Math.Round(model.NrCustoEstimado / model.NrEconomia, 2);
 
                 // Data da simulação
-                model.DtSimulacao = DateOnly.FromDateTime(DateTime.Now);
+                model.DtSimulacao = DateTime.Now;
 
                 int? userId = HttpContext.Session.GetInt32("UserId");
 

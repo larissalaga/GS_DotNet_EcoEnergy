@@ -13,7 +13,7 @@ namespace WebApplicationOdontoPrev.ViewModels
         // Calculado
         public double NrCustoEstimado { get; set; } = 0;
         public double NrEconomia { get; set; } = 0;
-        public DateOnly DtSimulacao { get; set; } = DateOnly.FromDateTime(DateTime.Now);
+        public DateTime DtSimulacao { get; set; } = DateTime.Now;
         public double NrPotenciaEstimada { get; set; } = 0;
         public double NrProducaoMensal { get; set; } = 0;
         public double NrTempoRetornoInvestimento { get; set; } = 0;

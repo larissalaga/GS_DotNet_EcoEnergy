@@ -14,7 +14,7 @@ namespace EcoEnergy.Dtos
 
         [Required]
         [DataType(DataType.Date)]
-        public DateOnly DtSimulacao { get; set; } = new DateOnly();
+        public DateTime DtSimulacao { get; set; } = new DateTime();
 
         [Required]
         public double NrConsumoMensal { get; set; } = 0;

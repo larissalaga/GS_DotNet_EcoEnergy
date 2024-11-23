@@ -23,8 +23,8 @@ namespace EcoEnergy.Models
 
         [Required]
         [Column("DT_ORCAMENTO")]
-        [DataType(DataType.Date)]
-        public DateOnly DtOrcamento { get; set; }
+        [DataType(DataType.DateTime)]
+        public DateTime DtOrcamento { get; set; } = new DateTime();
 
         [Required]
         [Column("DS_SERVICOS")]

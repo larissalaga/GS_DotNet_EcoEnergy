@@ -7,7 +7,19 @@
 
 <div class="container mt-5" style="max-width: 800px;">
     <h1 class="text-center display-5 fw-bold mb-4" style="color: #2e2e2e;">Inserir Novo Orçamento</h1>
+    @if (TempData["SuccessMessage"] != null)
+    {
+        <div class="alert alert-success text-center" role="alert">
+            @TempData["SuccessMessage"]
+        </div>
+    }
 
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger text-center" role="alert">
+            @TempData["ErrorMessage"]
+        </div>
+    }
     <form method="post" asp-action="OrcamentoView" asp-controller="Procedures">
         <div class="mb-4">
             <label asp-for="NrValorProposto" class="form-label" style="color: #2e2e2e; font-size: 1.2rem;">Valor Proposto</label>
@@ -49,6 +61,14 @@
             <button type="submit" class="btn px-5 py-2" style="background-color: #2e2e2e; color: white; font-size: 1.2rem;">Salvar</button>
         </div>
     </form>
+
+    <div class="text-center mt-3">
+        <a href="@Url.Action("MenuProcedures", "Procedures")" class="btn px-5 py-2" style="background-color: #e6e8d0; color: black; font-size: 1.2rem;">Voltar</a>
+    </div>
+
+    <div class="text-center mt-3">
+        <a href="@Url.Action("ListarOrcamentos", "Procedures")" class="btn px-5 py-2" style="background-color: #d0d8e8; color: black; font-size: 1.2rem;">Ver todos os Orçamentos</a>
+    </div>
 </div>
 
 @section Scripts {

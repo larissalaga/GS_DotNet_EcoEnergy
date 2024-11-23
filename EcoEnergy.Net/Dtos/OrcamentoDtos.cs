@@ -14,8 +14,8 @@ namespace EcoEnergy.Dtos
         public string DsPrazo { get; set; } = string.Empty;
 
         [Required]
-        [DataType(DataType.Date)]
-        public DateOnly DtOrcamento { get; set; } = new DateOnly();
+        [DataType(DataType.DateTime)]
+        public DateTime DtOrcamento { get; set; } = new DateTime();
 
         [Required]
         [MaxLength(200)]

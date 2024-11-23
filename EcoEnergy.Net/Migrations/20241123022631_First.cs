@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
@@ -101,7 +102,7 @@ namespace EcoEnergy.Migrations
                     ID_SIMULACAO = table.Column<int>(type: "NUMBER(10)", nullable: false, defaultValueSql: "SEQ_T_GS24_SIMULACAO.NEXTVAL"),
                     NR_CUSTO_ESTIMADO = table.Column<double>(type: "BINARY_DOUBLE", nullable: false),
                     NR_ECONOMIA = table.Column<double>(type: "BINARY_DOUBLE", nullable: false),
-                    DT_SIMULACAO = table.Column<string>(type: "NVARCHAR2(10)", nullable: false),
+                    DT_SIMULACAO = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
                     NR_CONSUMO_MENSAL = table.Column<double>(type: "BINARY_DOUBLE", nullable: false),
                     NR_AREA_PLACA = table.Column<double>(type: "BINARY_DOUBLE", nullable: false),
                     NR_POTENCIA_ESTIMADA = table.Column<double>(type: "BINARY_DOUBLE", nullable: false),
@@ -135,7 +136,7 @@ namespace EcoEnergy.Migrations
                     ID_ORCAMENTO = table.Column<int>(type: "NUMBER(10)", nullable: false, defaultValueSql: "SEQ_T_GS24_ORCAMENTO.NEXTVAL"),
                     NR_VALOR_PROPOSTO = table.Column<double>(type: "BINARY_DOUBLE", nullable: false),
                     DS_PRAZO = table.Column<string>(type: "NVARCHAR2(20)", maxLength: 20, nullable: false),
-                    DT_ORCAMENTO = table.Column<string>(type: "NVARCHAR2(10)", nullable: false),
+                    DT_ORCAMENTO = table.Column<DateTime>(type: "TIMESTAMP(7)", nullable: false),
                     DS_SERVICOS = table.Column<string>(type: "NVARCHAR2(200)", maxLength: 200, nullable: false),
                     ID_SIMULACAO = table.Column<int>(type: "NUMBER(10)", nullable: false),
                     SimulacaoIdSimulacao = table.Column<int>(type: "NUMBER(10)", nullable: true),

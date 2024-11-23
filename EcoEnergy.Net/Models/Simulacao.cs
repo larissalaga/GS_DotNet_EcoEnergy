@@ -22,8 +22,8 @@ namespace EcoEnergy.Models
 
         [Required]
         [Column("DT_SIMULACAO")]
-        [DataType(DataType.Date)]
-        public DateOnly DtSimulacao { get; set; } = new DateOnly();
+        [DataType(DataType.DateTime)]
+        public DateTime DtSimulacao { get; set; } = new DateTime();
 
         [Required]
         [Column("NR_CONSUMO_MENSAL")]

@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-5" style="max-width: 800px;">
+<div class="container mt-5" style="max-width: 90%;">
     <h1 class="text-center display-5 fw-bold mb-4" style="color: #2e2e2e;">Empresas Cadastradas</h1>
 
     @if (TempData["ErrorMessage"] != null)
@@ -15,9 +15,9 @@
         </div>
     }
 
-    <table class="table table-striped" style="background-color: #d0d8e8;">
-        <thead>
-            <tr style="color: #2e2e2e; font-size: 1.2rem;">
+    <table class="table table-hover table-bordered" style="background-color: #f9f9f9;">
+        <thead class="table-dark">
+            <tr style="font-size: 1.2rem;">
                 <th>ID</th>
                 <th>CNPJ</th>
                 <th>Nome</th>
@@ -28,7 +28,7 @@
         <tbody>
             @foreach (var empresa in Model)
             {
-                <tr>
+                <tr class="table-light">
                     <td>@empresa.IdEmpresa</td>
                     <td>@empresa.NrCnpj</td>
                     <td>@empresa.NmEmpresa</td>
